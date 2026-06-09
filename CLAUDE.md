@@ -79,20 +79,41 @@ zmt_video_auto_tool/
 
 ```
 image_service.generate_storyboard_image()
-  → 有参考图? → images.edit()（图生图）
-    → 失败? → images.generate()（文生图）
+  → 有参考图? → images.edit()（图生图）+ seed 一致性
+    → 失败? → images.generate()（文生图）+ seed 一致性
       → 失败? → mock 占位图
   → 无参考图? → images.generate()
     → 失败? → mock 占位图
 ```
 
+### 跨分镜一致性策略 (2026-06-08)
+
+**链式逐帧传递（核心方案）：**
+```
+shot_1 的垫图 = 合成(person_ref + product_ref)
+    ↓ images.edit + seed
+ output_1 ──→ shot_2 的垫图 = 合成(person_ref + product_ref + output_1)
+    ↓ images.edit + seed
+ output_2 ──→ shot_3 的垫图 = 合成(person_ref + product_ref + output_2)
+    ↓ images.edit + seed
+ output_3 ...
+```
+
+1. **共享 seed** — 同批所有分镜使用同一个随机种子
+2. **3 列参考图合成** — person(左1/6) + product(中1/6) + 上一帧(右4/6主视觉区)，合成为单张 1024x1024 垫图
+3. **链式视觉延续** — prompt 注入【链式延续】指令：继承上一帧的光影调性、色彩风格、人物外貌、场景质感
+4. **内容精准控制** — prompt 注入【画面内容】指令，按 reference_type 区分 person / product / both / none
+
 ## 当前进度
 
-- **上次工作内容:** 项目代码审查，建立 CLAUDE.md 和 git 仓库
+- **上次工作内容 (2026-06-08):**
+  1. 视频类型改版：8 种通用类型 → 3 种产品种草型（数字人口播+产品展示 / 纯产品+画外音 / 沉浸式无口播），每种携带详细编导 system_prompt
+  2. API 修复：适配 api.tu-zi.com 代理升级（gpt-4o-mini → gpt-5.4-mini + stream=True）
+  3. 分镜图提示词重构：按 AGENT_TASK.md 的 5 核心维度（主体/主体动作/光影/氛围调性/景别）生成 AIGC 风格提示词
+  4. 跨分镜一致性方案实施：共享 seed + 参考图合成 + 一致性锚点 + 内容精准控制
 - **待完成:**
   1. 接入视频生成 API（Runway / Pika / Kling / 即梦 等）
-  2. 改进分镜表生成的 prompt engineering（目前 LLM 生成质量有限）
-  3. 考虑拆分 app.py（1200行单体文件，维护困难）
+  2. 考虑拆分 app.py（1200行单体文件，维护困难）
 - **已知问题:**
   - `prompts.py` 中的 `VIDEO_TYPE_GENERATION_PROMPT` 等可能未被实际调用（app.py 直接用了内置的 `UNIVERSAL_VIDEO_TYPES` 列表）
   - `video_service.py` 只有 14 行，完全未实现

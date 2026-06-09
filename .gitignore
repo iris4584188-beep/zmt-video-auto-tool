@@ -31,6 +31,9 @@ outputs/reference_images/**/*.jpg
 # 保留目录结构
 !outputs/**/.gitkeep
 
+# 合成缓存
+outputs/.composite_cache/
+
 # 备份文件
 *_backup_before_manual.py
 

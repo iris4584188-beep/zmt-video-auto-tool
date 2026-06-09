@@ -301,52 +301,69 @@ st.markdown(
 
 UNIVERSAL_VIDEO_TYPES = [
     {
-        "type_name": "种草推荐类",
-        "description": "通过自然展示、使用体验、结果呈现来推荐产品、服务、方法或生活方式。",
-        "suitable_for": "美妆、护肤、健身、穿搭、好物、生活方式等",
-        "system_prompt": "生成种草推荐类分镜表，重点突出体验、自然露出和结果反馈。",
+        "type_name": "产品种草型-数字人口播+产品展示",
+        "description": "AI数字人口播讲解产品，配合产品特写与使用展示，口播逻辑为痛点→卖点→产品介绍→号召购买。",
+        "suitable_for": "美妆、护肤、数码、家居、食品、服饰、个护等全品类产品种草",
+        "system_prompt": """你是内容电商资深编导，深谙产品种草型视频的底层逻辑，擅长将产品卖点融入口播文案中。
+
+【视频形式】AI数字人口播讲解 + 产品特写/使用展示画面。数字人出镜口播，画面穿插产品细节。
+
+【分镜字段要求】
+每个分镜必须包含：时序、主体（人物或产品本身）、主体动作、口播文案、景别、镜头运动、光影、氛围调性。
+
+【口播文案核心逻辑】
+① 结构顺序：讲痛点 → 引出卖点 → 产品介绍 → 号召购买
+② 场景化表达：所有文案必须"场景化"，例如：
+  - 痛点场景化："熬夜脸黑暗沉" → "有没有姐妹跟我一样，熬夜追剧到凌晨，第二天脸色暗沉得不敢化妆出门？"
+  - 卖点场景化："提亮肤色" → "涂上它出门，回头率直接拉满"
+  - 参数场景化："五万毫安大容量充电宝" → "充一次电能让你打游戏一整天不用焦虑电量"
+③ 号召购买：结尾促单转化，引导下单
+
+【社交媒体风格】
+分镜碎且多、画面钩子强、节奏感强，适合短视频平台传播。
+
+【品类识别】先识别产品所属品类赛道，确保产品使用方法符合产品本身特性。""",
     },
     {
-        "type_name": "Vlog记录类",
-        "description": "以第一视角或日常记录方式展示人物过程。",
-        "suitable_for": "生活方式、健身、美妆、学习、旅行等",
-        "system_prompt": "生成Vlog记录类分镜表，重点突出真实生活感和时间流动。",
+        "type_name": "产品种草型-纯产品展示+画外音口播",
+        "description": "无数字人出镜，纯产品展示画面配合画外音口播，口播逻辑为痛点→卖点→产品介绍→号召购买。",
+        "suitable_for": "美妆、护肤、数码、家居、食品、服饰、个护等全品类产品种草",
+        "system_prompt": """你是内容电商资深编导，深谙产品种草型视频的底层逻辑，擅长将产品卖点融入口播文案中。
+
+【视频形式】纯产品展示画面 + 画外音口播。全程不出现数字人，口播文案以画外音形式呈现。
+
+【分镜字段要求】
+每个分镜必须包含：时序、主体（产品本身）、主体动作、口播文案、景别、镜头运动、光影、氛围调性。
+
+【口播文案核心逻辑】
+① 结构顺序：讲痛点 → 引出卖点 → 产品介绍 → 号召购买
+② 场景化表达：所有文案必须"场景化"，例如：
+  - 痛点场景化："熬夜脸黑暗沉" → "有没有姐妹跟我一样，熬夜追剧到凌晨，第二天脸色暗沉得不敢化妆出门？"
+  - 卖点场景化："提亮肤色" → "涂上它出门，回头率直接拉满"
+  - 参数场景化："五万毫安大容量充电宝" → "充一次电能让你打游戏一整天不用焦虑电量"
+③ 号召购买：结尾促单转化，引导下单
+
+【社交媒体风格】
+分镜碎且多、画面钩子强、节奏感强，适合短视频平台传播。
+
+【品类识别】先识别产品所属品类赛道，确保产品使用方法符合产品本身特性。""",
     },
     {
-        "type_name": "口播干货类",
-        "description": "面对镜头输出观点、经验、知识。",
-        "suitable_for": "知识博主、职场、健身科普、美妆护肤知识等",
-        "system_prompt": "生成口播干货类分镜表，重点突出开头钩子和信息层次。",
-    },
-    {
-        "type_name": "产品测评类",
-        "description": "围绕一个或多个产品做展示、评价、对比。",
-        "suitable_for": "美妆、护肤、健身装备、数码、家居、食品等",
-        "system_prompt": "生成产品测评类分镜表，重点突出产品特写、使用过程和体验反馈。",
-    },
-    {
-        "type_name": "教程示范类",
-        "description": "一步步教用户完成某个动作、流程或技巧。",
-        "suitable_for": "美妆教程、健身教学、做饭、学习方法等",
-        "system_prompt": "生成教程示范类分镜表，重点突出步骤清晰和动作明确。",
-    },
-    {
-        "type_name": "对比反差类",
-        "description": "通过前后对比、错误正确对比形成记忆点。",
-        "suitable_for": "变美、减脂、穿搭、健身、护肤等",
-        "system_prompt": "生成对比反差类分镜表，重点突出前后变化和视觉冲击。",
-    },
-    {
-        "type_name": "剧情短剧类",
-        "description": "用人物冲突、反转情节包装内容。",
-        "suitable_for": "职场、生活方式、种草、情绪价值等",
-        "system_prompt": "生成剧情短剧类分镜表，重点突出冲突和反转。",
-    },
-    {
-        "type_name": "沉浸式展示类",
-        "description": "弱口播、重画面，用细节和氛围展示流程。",
-        "suitable_for": "护肤、美妆、健身、做饭、收纳、家居等",
-        "system_prompt": "生成沉浸式展示类分镜表，重点突出细节镜头和氛围感。",
+        "type_name": "产品种草型-沉浸式产品使用（无口播文案）",
+        "description": "沉浸式产品使用展示，无口播无旁白，纯画面叙事，靠产品使用细节和氛围打动用户。",
+        "suitable_for": "美妆、护肤、数码、家居、食品、服饰、个护等全品类产品种草",
+        "system_prompt": """你是内容电商资深编导，深谙产品种草型视频的底层逻辑，擅长将产品卖点融入纯粹的视觉叙事中。
+
+【视频形式】沉浸式产品使用展示，全程无口播文案、无旁白。纯粹依靠画面语言传达产品卖点。
+
+【分镜字段要求】
+每个分镜必须包含：时序、主体（产品本身）、主体动作、景别、镜头运动、光影、氛围调性。
+⚠️ 重要：本类型不需要口播文案（subtitle 字段留空字符串即可）。
+
+【社交媒体风格】
+分镜碎且多、画面钩子强、节奏感强，适合短视频平台传播。用细节镜头和氛围感替代语言说服。
+
+【品类识别】先识别产品所属品类赛道，确保产品使用方法符合产品本身特性，符合该品类其他产品的通用使用逻辑。""",
     },
 ]
 
@@ -372,17 +389,19 @@ except Exception as e:
         has_person_reference: bool = False,
         has_product_reference: bool = False,
     ) -> Dict[str, str]:
+        """（fallback）按 AGENT_TASK.md 逻辑：提取 5 核心维度生成 AIGC 图片提示词"""
+        subject = shot.get("subject", "一位内容创作者")
+        subject_action = shot.get("subject_action", "自然站立面对镜头")
+        lighting = shot.get("lighting", "自然柔光")
+        mood = shot.get("mood", "真实自然，生活感强")
+        shot_size = shot.get("shot_size", "中景")
         negative = shot.get("negative_prompt", "不要棚拍摄影光，不要过度磨皮，不要水印")
+
         cn = (
-            f"【时序】{shot.get('time_sequence','')} "
-            f"【人物主体】{shot.get('subject','')} "
-            f"【人物主体动作】{shot.get('subject_action','')} "
-            f"【场景】{shot.get('scene','')} "
-            f"【景别】{shot.get('shot_size','')} "
-            f"【镜头运动】{shot.get('camera_movement','')} "
-            f"【光影】{shot.get('lighting','')} "
-            f"【氛围】{shot.get('mood','')} "
-            f"【负面提示词】{negative}"
+            f"{shot_size}，{subject}，{subject_action}，"
+            f"{lighting}，{mood}。"
+            f"整体画面为短视频分镜图质感，生活化自然纪实感强。"
+            f"负面提示词：{negative}。"
         )
         return {"image_prompt_cn": cn, "image_prompt_en": cn}
 
@@ -393,22 +412,32 @@ except Exception as e:
         has_person_reference: bool = False,
         has_product_reference: bool = False,
     ) -> List[Dict[str, Any]]:
+        type_name = selected_video_type_detail.get("type_name", "通用视频")
+        is_no_voiceover = "无口播" in type_name
+        is_pure_product = "纯产品展示" in type_name or "沉浸式" in type_name
+
         rows = []
         for i in range(1, shot_count + 1):
+            if has_person_reference and not is_pure_product:
+                subject = "基于上传人物参考图中的同一位人物"
+            elif is_pure_product:
+                subject = "产品主体"
+            else:
+                subject = "一位内容创作者（数字人）"
             row = {
                 "shot_id": i,
                 "time_sequence": f"分镜{i}",
-                "subject": "基于上传人物参考图中的同一位人物" if has_person_reference else "一位内容创作者",
-                "subject_action": "完成当前分镜动作",
+                "subject": subject,
+                "subject_action": "展示产品细节与使用效果" if is_pure_product else "完成当前分镜动作",
                 "scene": "真实生活场景",
                 "shot_size": "中景",
                 "camera_movement": "手持轻微运动镜头",
                 "lighting": "自然光",
                 "mood": "真实自然，生活感强",
-                "subtitle": f"{selected_video_type_detail.get('type_name','通用视频')} 分镜{i}",
+                "subtitle": "" if is_no_voiceover else f"{type_name} 口播文案 - 分镜{i}",
                 "negative_prompt": "不要棚拍摄影光的精致感，不要过度磨皮，不要夸张美颜，不要塑料感，不要水印，不要文字",
-                "reference_type": "person" if has_person_reference else "none",
-                "video_prompt": "人物动作自然连贯，镜头轻微移动，保持真实短视频质感。",
+                "reference_type": "person" if (has_person_reference and not is_pure_product) else "none",
+                "video_prompt": "产品特写镜头自然连贯，保持真实短视频质感。" if is_pure_product else "人物动作自然连贯，镜头轻微移动，保持真实短视频质感。",
             }
             row.update(build_image_prompt_from_fields(row, has_person_reference, has_product_reference))
             rows.append(row)
@@ -585,7 +614,7 @@ def normalize_image_result(result: Any, shot_id: int, used_refs: List[str], prom
     }
 
 
-def generate_one_storyboard_image(shot: Dict[str, Any]) -> Dict[str, Any]:
+def generate_one_storyboard_image(shot: Dict[str, Any], seed: Optional[int] = None) -> Dict[str, Any]:
     shot_id = int(shot.get("shot_id", 1))
     prompt = shot.get("image_prompt_cn") or shot.get("image_prompt_en") or ""
     negative_prompt = shot.get("negative_prompt", "")
@@ -618,6 +647,7 @@ def generate_one_storyboard_image(shot: Dict[str, Any]) -> Dict[str, Any]:
                 product_image_paths=st.session_state.get("product_reference_images", []),
                 shot_id=shot_id,
                 negative_prompt=negative_prompt,
+                seed=seed,
             )
             return normalize_image_result(result, shot_id, used_refs, prompt)
         except Exception as e:
@@ -772,7 +802,7 @@ if page == "① 需求与素材":
         st.caption("建议写清楚：人物主体、赛道、主题、风格、产品卖点。比如：同一位年轻女性、真实随手拍、不要棚拍感。")
 
     with col2:
-        st.subheader("🎀 选择通用视频类型")
+        st.subheader("🎀 选择视频类型")
 
         type_names = [x["type_name"] for x in UNIVERSAL_VIDEO_TYPES]
         current_name = st.session_state.selected_video_type_detail.get("type_name", UNIVERSAL_VIDEO_TYPES[0]["type_name"])
@@ -926,7 +956,7 @@ elif page == "② 分镜表编辑":
         col_a, col_b = st.columns(2)
 
         with col_a:
-            if st.button("🎀 根据构成字段重新生成所有分镜图提示词", use_container_width=True):
+            if st.button("🎀 生成分镜图提示词E", use_container_width=True):
                 new_rows = []
                 for row in st.session_state.storyboard_table:
                     rebuilt = build_image_prompt_from_fields(
@@ -966,17 +996,37 @@ elif page == "③ 生成分镜图":
 
         with top_col1:
             if st.button("💗 一键生成全部分镜图", use_container_width=True):
-                results = []
-                progress = st.progress(0)
+                with st.spinner("正在批量生成分镜图（保持人物/产品一致性）..."):
+                    if image_service and hasattr(image_service, "generate_storyboard_images"):
+                        progress = st.progress(0)
 
-                for idx, shot in enumerate(st.session_state.storyboard_table):
-                    result = generate_one_storyboard_image(shot)
-                    results.append(result)
-                    progress.progress((idx + 1) / len(st.session_state.storyboard_table))
+                        def update_progress(fraction):
+                            progress.progress(fraction)
 
-                st.session_state.storyboard_images = results
-                st.session_state.storyboard_videos = []
-                st.success(f"已生成 {len(results)} 张分镜图。")
+                        results = image_service.generate_storyboard_images(
+                            shots=st.session_state.storyboard_table,
+                            person_image_paths=st.session_state.get("person_reference_images", []),
+                            product_image_paths=st.session_state.get("product_reference_images", []),
+                            progress_callback=update_progress,
+                        )
+                        # 规范化结果
+                        normalized = []
+                        for r in results:
+                            shot_id = r.get("shot_id", 0)
+                            shot = next((s for s in st.session_state.storyboard_table if s.get("shot_id") == shot_id), None)
+                            prompt = ""
+                            if shot:
+                                prompt = shot.get("image_prompt_cn") or shot.get("image_prompt_en") or ""
+                            normalized.append(normalize_image_result(r, shot_id, r.get("used_reference_images", []), prompt))
+                        results = normalized
+
+                        st.session_state.storyboard_images = results
+                        st.session_state.storyboard_videos = []
+                        seed_info = results[0].get("seed") if results else ""
+                        st.success(f"已生成 {len(results)} 张分镜图（一致性 seed: {seed_info}）。")
+                    else:
+                        st.error("image_service.generate_storyboard_images 不可用")
+                    progress.empty()
                 st.rerun()
 
         with top_col2:
